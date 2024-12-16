@@ -11,6 +11,7 @@ class BlogWidget extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        fontFamily: 'Lato',
       ),
       routerConfig: Modular.routerConfig,
     );
