@@ -1,3 +1,6 @@
+import 'package:ca_flutter_test/core/routing/routes.dart';
+import 'package:ca_flutter_test/features/splash/ui/pages/splash_page.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
 
 class BlogModule extends Module {
@@ -9,7 +12,9 @@ class BlogModule extends Module {
 
   @override
   void routes(RouteManager r) {
-    // TODO: implement routes
-    super.routes(r);
+    r.child(
+      Routes.splash,
+      child: (context) => SplashPage(),
+    );
   }
 }
