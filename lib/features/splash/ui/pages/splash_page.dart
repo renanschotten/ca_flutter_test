@@ -1,5 +1,7 @@
 import 'package:ca_flutter_test/core/animations/custom_animations.dart';
+import 'package:ca_flutter_test/core/routing/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -27,8 +29,9 @@ class _SplashPageState extends State<SplashPage>
   }
 
   void statusListener(status) {
-    /// TODO: implement statusListener
-    if (status == AnimationStatus.completed) {}
+    if (status != AnimationStatus.completed) return;
+
+    Modular.to.popAndPushNamed(Routes.login);
   }
 
   @override
