@@ -29,9 +29,9 @@ class _SplashPageState extends State<SplashPage>
   }
 
   void statusListener(status) {
-    if (status != AnimationStatus.completed) return;
-
-    Modular.to.popAndPushNamed(Routes.login);
+    if (status == AnimationStatus.completed) {
+      Modular.to.pushReplacementNamed(Routes.login);
+    }
   }
 
   @override
