@@ -1,33 +1,78 @@
 # Conta Azul - Flutter Test
 
-This document serves as a reference for developer evaluation during the application process.
+## Considerações iniciais
 
-> Before you start your test, please read the [architecture](./ARCHITECTURE.md) guide.
+Esse projeto vai desenvolvido e validado apenas em Android devido a indisponibilidade de acesso ao sistema macOS.
 
-## Project Setup
+### O que foi utilizado
 
-You must fork this repository and create a Flutter project within the root directory.
+Para o desenvolvimento desse desafio, foram utilizados os seguintes padrões e dependencias:
 
-```sh
-$ flutter create .
-```
+    - Arquitetura MiniCore;
+    - Flutter Modular para navegação e injeção de dependência;
+    - ValueNotifier para gerenciamento de estados;
+    - InternetConnectionChecker para verificar a disponibilidade de internet;
+    - Pacote http para requisições http;
+    - FirebaseAuth para autenticação.
 
-## Project Themes
+## Features
 
-You can choose to implement either of the following [themes](./themes/README.md) within the provided architecture.
+### Login
 
-## Evaluation
+A autenticação é realizada utilizando o serviço FirebaseAuth com as seguintes credenciais:
 
-After completing your application, provide the GitHub repository URL for evaluation. We will assess your code's adherence to these guidelines, focusing on factors like:
+    - teste@teste.com
+    - !teste@1234
 
-* Code structure and organization
-* Implementation of chosen architecture patterns
-* Code quality and adherence to Flutter best practices
-* Unit test coverage
-* Overall application functionality
+### Home
 
-By following these guidelines and demonstrating a strong understanding of the principles, you'll increase your chances.
+A HomePage lista todos os posts retornados pela API, com os estados de carregamento, falha e sucesso.
 
-**Note:**
+Na HomePage existem as seguintes ações:
 
-This document serves as a guideline, and some flexibility is allowed. If you have a compelling reason to deviate, feel free to discuss it with the team.
+    - Ao clicar no ListTile é redirecionado para a página de detalhes do post;
+    - LabelButton na AppBar com o texto "Favoritos" navega para a página de posts favoritosç
+    - IconButton de estrala no ListTile de post para favoritar ou desfavoritar o post;
+    - FloatingActionButton navega para a página de buscar post por ID.
+
+## Imagens
+
+### Splash
+
+![Splash](./assets/app_images/splash.png)
+
+### Login
+
+![Login](./assets/app_images/login1.png)
+![Login](./assets/app_images/login2.png)
+![Login](./assets/app_images/login3.png)
+
+### Home
+
+![Home](./assets/app_images/home1.png)
+![Home](./assets/app_images/home2.png)
+![Home](./assets/app_images/home3.png)
+![Home](./assets/app_images/home4.png)
+
+### Detalhes
+
+![Detalhes](./assets/app_images/detalhes1.png)
+![Detalhes](./assets/app_images/detalhes2.png)
+
+### Posts Favoritos
+
+![Favoritos](./assets/app_images/favoritos1.png)
+![Favoritos](./assets/app_images/favoritos2.png)
+
+### Post não encontrado
+
+![Post nao encontrado](./assets/app_images/post_nao_encontrado.png)
+
+### Sem conexão
+
+![Sem internet](./assets/app_images/sem_internet.png)
+
+### Procurar post
+
+![Procurar post](./assets/app_images/procurarpost1.png)
+![Procurar post](./assets/app_images/procurarpost2.png)
