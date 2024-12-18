@@ -75,6 +75,11 @@ class _HomePageState extends State<HomePage> {
           };
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        tooltip: "Buscar post",
+        onPressed: () => Modular.to.pushNamed(Routes.searchPost),
+        child: Icon(Icons.search),
+      ),
     );
   }
 }
