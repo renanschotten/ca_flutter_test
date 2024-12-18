@@ -43,36 +43,36 @@ Na HomePage existem as seguintes ações:
 
 ### Login
 
-![Login](./assets/app_images/login1.png)
-![Login](./assets/app_images/login2.png)
-![Login](./assets/app_images/login3.png)
+<img src="./assets/app_images/login1.png" style="width:50%; height:50%;">
+<img src="./assets/app_images/login2.png" style="width:50%; height:50%;">
+<img src="./assets/app_images/login3.png" style="width:50%; height:50%;">
 
 ### Home
 
-![Home](./assets/app_images/home1.png)
-![Home](./assets/app_images/home2.png)
-![Home](./assets/app_images/home3.png)
-![Home](./assets/app_images/home4.png)
+<img src="./assets/app_images/home1.png" style="width:50%; height:50%;">
+<img src="./assets/app_images/home2.png" style="width:50%; height:50%;">
+<img src="./assets/app_images/home3.png" style="width:50%; height:50%;">
+<img src="./assets/app_images/home4.png" style="width:50%; height:50%;">
 
 ### Detalhes
 
-![Detalhes](./assets/app_images/detalhes1.png)
-![Detalhes](./assets/app_images/detalhes2.png)
+<img src="./assets/app_images/detalhes1.png" style="width:50%; height:50%;">
+<img src="./assets/app_images/detalhes2.png" style="width:50%; height:50%;">
 
 ### Posts Favoritos
 
-![Favoritos](./assets/app_images/favoritos1.png)
-![Favoritos](./assets/app_images/favoritos2.png)
+<img src="./assets/app_images/favoritos1.png" style="width:50%; height:50%;">
+<img src="./assets/app_images/favoritos2.png" style="width:50%; height:50%;">
 
 ### Post não encontrado
 
-![Post nao encontrado](./assets/app_images/post_nao_encontrado.png)
+<img src="./assets/app_images/post_nao_encontrado.png" style="width:50%; height:50%;">
 
 ### Sem conexão
 
-![Sem internet](./assets/app_images/sem_internet.png)
+<img src="./assets/app_images/sem_internet.png" style="width:50%; height:50%;">
 
 ### Procurar post
 
-![Procurar post](./assets/app_images/procurarpost1.png)
-![Procurar post](./assets/app_images/procurarpost2.png)
+<img src="./assets/app_images/procurarpost1.png" style="width:50%; height:50%;">
+<img src="./assets/app_images/procurarpost2.png" style="width:50%; height:50%;">
