@@ -5,14 +5,14 @@ class FailureWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.description,
-    required this.buttonText,
-    required this.onTapButton,
+    this.buttonText = '',
+    this.onTapButton,
   });
 
   final String title;
   final String description;
   final String buttonText;
-  final VoidCallback onTapButton;
+  final VoidCallback? onTapButton;
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +30,16 @@ class FailureWidget extends StatelessWidget {
             description,
             style: TextTheme.of(context).bodyLarge,
           ),
-          Spacer(),
-          SizedBox(
-            width: MediaQuery.sizeOf(context).width,
-            child: ElevatedButton(
-              onPressed: onTapButton,
-              child: Text(buttonText),
+          if (buttonText.isNotEmpty) ...[
+            Spacer(),
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width,
+              child: ElevatedButton(
+                onPressed: onTapButton,
+                child: Text(buttonText),
+              ),
             ),
-          ),
+          ]
         ],
       ),
     );
