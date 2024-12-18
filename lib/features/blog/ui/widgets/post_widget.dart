@@ -5,8 +5,10 @@ class PostWidget extends StatefulWidget {
   const PostWidget({
     super.key,
     required this.post,
+    this.onTap,
   });
   final PostEntity post;
+  final VoidCallback? onTap;
 
   @override
   State<PostWidget> createState() => _PostWidgetState();
@@ -29,6 +31,7 @@ class _PostWidgetState extends State<PostWidget> {
           color: Colors.grey.shade600,
         ),
       ),
+      onTap: widget.onTap,
     );
   }
 }

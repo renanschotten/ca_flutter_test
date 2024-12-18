@@ -1,9 +1,11 @@
+import 'package:ca_flutter_test/core/routing/routes.dart';
 import 'package:ca_flutter_test/features/blog/interactor/controller/home_controller.dart';
 
 import 'package:ca_flutter_test/features/blog/interactor/states/home_state.dart';
 import 'package:ca_flutter_test/features/blog/ui/widgets/post_widget.dart';
 import 'package:ca_flutter_test/features/shared/connectivity/ui/widgets/failure_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.controller});
@@ -38,6 +40,12 @@ class _HomePageState extends State<HomePage> {
                 itemCount: state.posts.length,
                 itemBuilder: (context, index) => PostWidget(
                   post: state.posts[index],
+                  onTap: () => Modular.to.pushNamed(
+                    Routes.postDetails,
+                    arguments: {
+                      'post': state.posts[index],
+                    },
+                  ),
                 ),
                 separatorBuilder: (context, index) => SizedBox(height: 8.0),
               ),

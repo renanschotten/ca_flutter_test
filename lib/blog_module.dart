@@ -11,6 +11,7 @@ import 'package:ca_flutter_test/features/blog/interactor/datasources/i_blog_ds.d
 import 'package:ca_flutter_test/features/blog/interactor/repositories/i_blog_repository.dart';
 import 'package:ca_flutter_test/features/blog/interactor/services/i_api_service.dart';
 import 'package:ca_flutter_test/features/blog/ui/pages/home_page.dart';
+import 'package:ca_flutter_test/features/blog/ui/pages/post_details_page.dart';
 import 'package:ca_flutter_test/features/splash/ui/pages/splash_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -62,6 +63,12 @@ class BlogModule extends Module {
       Routes.home,
       child: (context) => HomePage(
         controller: Modular.get<HomeController>(),
+      ),
+    );
+    r.child(
+      Routes.postDetails,
+      child: (context) => PostDetailsPage(
+        post: r.args.data['post'],
       ),
     );
   }
