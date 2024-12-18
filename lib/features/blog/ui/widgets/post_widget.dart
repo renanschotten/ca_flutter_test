@@ -6,8 +6,10 @@ class PostWidget extends StatefulWidget {
     super.key,
     required this.post,
     this.onTap,
+    this.trailing,
   });
   final PostEntity post;
+  final Widget? trailing;
   final VoidCallback? onTap;
 
   @override
@@ -31,6 +33,7 @@ class _PostWidgetState extends State<PostWidget> {
           color: Colors.grey.shade600,
         ),
       ),
+      trailing: widget.trailing,
       onTap: widget.onTap,
     );
   }
