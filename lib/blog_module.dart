@@ -10,6 +10,7 @@ import 'package:ca_flutter_test/features/blog/interactor/controller/home_control
 import 'package:ca_flutter_test/features/blog/interactor/datasources/i_blog_ds.dart';
 import 'package:ca_flutter_test/features/blog/interactor/repositories/i_blog_repository.dart';
 import 'package:ca_flutter_test/features/blog/interactor/services/i_api_service.dart';
+import 'package:ca_flutter_test/features/blog/ui/pages/favorite_posts_page.dart';
 import 'package:ca_flutter_test/features/blog/ui/pages/home_page.dart';
 import 'package:ca_flutter_test/features/blog/ui/pages/post_details_page.dart';
 import 'package:ca_flutter_test/features/splash/ui/pages/splash_page.dart';
@@ -69,6 +70,12 @@ class BlogModule extends Module {
       Routes.postDetails,
       child: (context) => PostDetailsPage(
         post: r.args.data['post'],
+      ),
+    );
+    r.child(
+      Routes.favoritePosts,
+      child: (context) => FavoritePostsPage(
+        posts: r.args.data['favoritesPosts'],
       ),
     );
   }

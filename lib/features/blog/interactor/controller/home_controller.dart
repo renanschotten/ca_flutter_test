@@ -30,4 +30,6 @@ class HomeController {
     posts[index] = posts[index].copyWith(favorite: !currentStatus);
     homeState.value = SuccessHomeState(posts: posts);
   }
+
+  List<PostEntity> get favoritePosts => posts.where((e) => e.favorite).toList();
 }

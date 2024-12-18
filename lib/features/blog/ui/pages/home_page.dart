@@ -28,6 +28,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Posts"),
+        actions: [
+          TextButton(
+            onPressed: () => Modular.to.pushNamed(
+              Routes.favoritePosts,
+              arguments: {
+                "favoritesPosts": widget.controller.favoritePosts,
+              },
+            ),
+            child: Text("Favoritos"),
+          ),
+        ],
       ),
       body: ValueListenableBuilder(
         valueListenable: widget.controller.homeState,
