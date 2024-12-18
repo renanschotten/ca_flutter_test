@@ -41,7 +41,7 @@ void main() {
         // Act
         await controller.getPosts();
         // Assert
-        expect(controller.homeState.value, FailureHomeState());
+        expect(controller.homeState.value, isInstanceOf<FailureHomeState>());
       },
     );
   });

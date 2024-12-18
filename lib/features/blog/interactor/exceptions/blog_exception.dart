@@ -1,6 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-class BlogException extends Equatable implements Exception {
+sealed class BlogException extends Equatable implements Exception {}
+
+class GenericBlogException extends BlogException {
+  @override
+  List<Object?> get props => [runtimeType];
+}
+
+class NoConnectionException extends BlogException {
   @override
   List<Object?> get props => [runtimeType];
 }

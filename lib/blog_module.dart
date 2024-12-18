@@ -13,6 +13,7 @@ import 'package:ca_flutter_test/features/blog/interactor/services/i_api_service.
 import 'package:ca_flutter_test/features/blog/ui/pages/favorite_posts_page.dart';
 import 'package:ca_flutter_test/features/blog/ui/pages/home_page.dart';
 import 'package:ca_flutter_test/features/blog/ui/pages/post_details_page.dart';
+import 'package:ca_flutter_test/features/shared/data/service/internet_connection_service.dart';
 import 'package:ca_flutter_test/features/splash/ui/pages/splash_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -28,10 +29,16 @@ class BlogModule extends Module {
       () => FirebaseAuthService(firebaseAuth: i<FirebaseAuth>()),
     );
     i.addSingleton<IApiService>(() => HttpApiService());
+    i.addSingleton<InternetConnectionService>(
+      () => InternetConnectionService(),
+    );
 
     // DataSources
     i.addSingleton<IBlogDataSource>(
-      () => BlogDataSource(service: i<IApiService>()),
+      () => BlogDataSource(
+        service: i<IApiService>(),
+        internetConnectionService: i<InternetConnectionService>(),
+      ),
     );
 
     // Repositories

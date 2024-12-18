@@ -66,10 +66,10 @@ class _HomePageState extends State<HomePage> {
                 separatorBuilder: (context, index) => SizedBox(height: 8.0),
               ),
             FailureHomeState() => FailureWidget(
-                title: "Ocorreu um erro ao processar a sua requisição",
-                description: "Tente novamente em alguns instantes",
-                buttonText: "Tentar Novamente",
-                onTapButton: () => widget.controller.getPosts(),
+                title: state.title,
+                description: state.description,
+                buttonText: state.buttonText,
+                onTapButton: state.onTapButton,
               ),
             InitialHomeState() => SizedBox(),
           };
