@@ -2,7 +2,7 @@
 
 ## Considerações iniciais
 
-Esse projeto vai desenvolvido e validado apenas em Android devido a indisponibilidade de acesso ao sistema macOS.
+Esse projeto foi desenvolvido e validado apenas em Android devido a indisponibilidade de acesso ao sistema macOS.
 
 ### O que foi utilizado
 
@@ -39,7 +39,7 @@ Na HomePage existem as seguintes ações:
 
 ### Splash
 
-![Splash](./assets/app_images/splash.png)
+![Splash](./assets/app_images/splash.png =300x100)
 
 ### Login
 
