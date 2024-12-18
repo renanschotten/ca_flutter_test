@@ -4,7 +4,7 @@ import 'package:ca_flutter_test/features/blog/interactor/controller/home_control
 import 'package:ca_flutter_test/features/blog/interactor/states/home_state.dart';
 import 'package:ca_flutter_test/features/blog/ui/widgets/favorite_button.dart';
 import 'package:ca_flutter_test/features/blog/ui/widgets/post_widget.dart';
-import 'package:ca_flutter_test/features/shared/connectivity/ui/widgets/failure_widget.dart';
+import 'package:ca_flutter_test/features/shared/ui/widgets/failure_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
