@@ -19,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   final emailFocus = FocusNode();
   final passwordFocus = FocusNode();
+  bool obscureText = true;
 
   @override
   void didChangeDependencies() {
@@ -104,7 +105,15 @@ class _LoginPageState extends State<LoginPage> {
                             onTapOutside: (_) => passwordFocus.unfocus(),
                             decoration: InputDecoration(
                               hintText: "Senha",
+                              suffixIcon: IconButton(
+                                onPressed: () =>
+                                    setState(() => obscureText = !obscureText),
+                                icon: Icon(
+                                  Icons.visibility,
+                                ),
+                              ),
                             ),
+                            obscureText: obscureText,
                             controller: passwordController,
                             validator: (value) =>
                                 widget.loginController.validatePassword(value),
