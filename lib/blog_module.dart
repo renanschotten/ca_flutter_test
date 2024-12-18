@@ -7,12 +7,14 @@ import 'package:ca_flutter_test/features/blog/data/ds/blog_ds.dart';
 import 'package:ca_flutter_test/features/blog/data/repositories/blog_repository.dart';
 import 'package:ca_flutter_test/features/blog/data/services/http_api_service.dart';
 import 'package:ca_flutter_test/features/blog/interactor/controller/home_controller.dart';
+import 'package:ca_flutter_test/features/blog/interactor/controller/search_post_controller.dart';
 import 'package:ca_flutter_test/features/blog/interactor/datasources/i_blog_ds.dart';
 import 'package:ca_flutter_test/features/blog/interactor/repositories/i_blog_repository.dart';
 import 'package:ca_flutter_test/features/blog/interactor/services/i_api_service.dart';
 import 'package:ca_flutter_test/features/blog/ui/pages/favorite_posts_page.dart';
 import 'package:ca_flutter_test/features/blog/ui/pages/home_page.dart';
 import 'package:ca_flutter_test/features/blog/ui/pages/post_details_page.dart';
+import 'package:ca_flutter_test/features/blog/ui/pages/search_post_page.dart';
 import 'package:ca_flutter_test/features/shared/data/service/internet_connection_service.dart';
 import 'package:ca_flutter_test/features/splash/ui/pages/splash_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -53,6 +55,9 @@ class BlogModule extends Module {
     i.addSingleton<HomeController>(
       () => HomeController(repository: i<IBlogRepository>()),
     );
+    i.addSingleton<SearchPostController>(
+      () => SearchPostController(repository: i<IBlogRepository>()),
+    );
   }
 
   @override
@@ -83,6 +88,12 @@ class BlogModule extends Module {
       Routes.favoritePosts,
       child: (context) => FavoritePostsPage(
         posts: r.args.data['favoritesPosts'],
+      ),
+    );
+    r.child(
+      Routes.searchPost,
+      child: (context) => SearchPostPage(
+        controller: Modular.get<SearchPostController>(),
       ),
     );
   }
