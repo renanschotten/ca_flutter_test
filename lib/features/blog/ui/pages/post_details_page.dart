@@ -18,9 +18,19 @@ class PostDetailsPage extends StatelessWidget {
             spacing: 16,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Autor: ${post.userId}",
-                style: TextTheme.of(context).bodyLarge,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Autor: ${post.userId}",
+                    style: TextTheme.of(context).bodyLarge,
+                  ),
+                  if (post.favorite)
+                    Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    )
+                ],
               ),
               Text(post.title, style: TextTheme.of(context).headlineLarge),
               Text(post.body, style: TextTheme.of(context).bodyLarge)
