@@ -2,6 +2,7 @@ import 'package:ca_flutter_test/core/routing/routes.dart';
 import 'package:ca_flutter_test/features/blog/interactor/controller/home_controller.dart';
 
 import 'package:ca_flutter_test/features/blog/interactor/states/home_state.dart';
+import 'package:ca_flutter_test/features/blog/ui/widgets/favorite_button.dart';
 import 'package:ca_flutter_test/features/blog/ui/widgets/post_widget.dart';
 import 'package:ca_flutter_test/features/shared/connectivity/ui/widgets/failure_widget.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,10 @@ class _HomePageState extends State<HomePage> {
                     arguments: {
                       'post': state.posts[index],
                     },
+                  ),
+                  trailing: FavoriteButton(
+                    initialValue: state.posts[index].favorite,
+                    onTap: () => widget.controller.changeFavoriteStatus(index),
                   ),
                 ),
                 separatorBuilder: (context, index) => SizedBox(height: 8.0),

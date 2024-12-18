@@ -45,4 +45,40 @@ void main() {
       },
     );
   });
+
+  group(
+    "changeFavoriteStatus |",
+    () {
+      test(
+          "should assign SuccesHomeState with updated favorite status of given index element",
+          () {
+        // Arrange
+        controller.posts = [
+          PostEntity(
+            userId: 1,
+            id: 1,
+            title: 'title',
+            body: 'body',
+            favorite: false,
+          ),
+        ];
+
+        // Act
+        controller.changeFavoriteStatus(0);
+
+        expect(
+          controller.homeState.value,
+          SuccessHomeState(posts: [
+            PostEntity(
+              userId: 1,
+              id: 1,
+              title: 'title',
+              body: 'body',
+              favorite: false,
+            ),
+          ]),
+        );
+      });
+    },
+  );
 }
