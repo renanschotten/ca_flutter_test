@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FailurePage extends StatelessWidget {
-  const FailurePage({
+class FailureWidget extends StatelessWidget {
+  const FailureWidget({
     super.key,
     required this.title,
     required this.description,
