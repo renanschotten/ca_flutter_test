@@ -1,4 +1,5 @@
 import 'package:ca_flutter_test/core/utils/result.dart';
+import 'package:ca_flutter_test/features/auth/interactor/exceptions/auth_exception.dart';
 import 'package:ca_flutter_test/features/auth/interactor/services/i_auth_service.dart';
 import 'package:ca_flutter_test/features/auth/interactor/states/login_state.dart';
 import 'package:ca_flutter_test/features/auth/interactor/validators/auth_validators.dart';
@@ -31,7 +32,17 @@ class LoginController {
         loginState.value = SuccessLoginState();
         break;
       case Error():
-        loginState.value = FailureLoginState();
+        if (result.error == NetworkRequestFailureException()) {
+          loginState.value = NoConnectionLoginState(
+            title: "Sem internet",
+            description:
+                "Verifique a sua conexão e tente novamente em alguns instantes",
+            buttonText: "Tentar Novamente",
+            onTapButton: () => loginState.value = InitialLoginState(),
+          );
+        } else {
+          loginState.value = FailureLoginState();
+        }
         break;
     }
   }

@@ -2,6 +2,7 @@ import 'package:ca_flutter_test/core/routing/routes.dart';
 import 'package:ca_flutter_test/features/auth/interactor/controller/login_controller.dart';
 import 'package:ca_flutter_test/features/auth/interactor/states/login_state.dart';
 import 'package:ca_flutter_test/features/auth/ui/widgets/failure_dialog_widget.dart';
+import 'package:ca_flutter_test/features/shared/ui/widgets/failure_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -68,6 +69,12 @@ class _LoginPageState extends State<LoginPage> {
             LoadingLoginState() => Center(
                 child: CircularProgressIndicator(),
               ),
+            NoConnectionLoginState() => FailureWidget(
+                title: state.title,
+                description: state.description,
+                buttonText: state.buttonText,
+                onTapButton: state.onTapButton,
+              ),
             _ => Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -105,32 +112,30 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                       ),
                     ),
+                    Spacer(),
+                    ValueListenableBuilder(
+                      valueListenable: widget.loginController.buttonState,
+                      builder: (context, state, _) => SizedBox(
+                        width: MediaQuery.sizeOf(context).width,
+                        child: ElevatedButton(
+                          onPressed: state == ButtonState.enabled
+                              ? () async {
+                                  await widget.loginController
+                                      .loginWithEmailAndPassword(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  );
+                                }
+                              : null,
+                          child: Text('Login'),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               )
           };
         },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ValueListenableBuilder(
-          valueListenable: widget.loginController.buttonState,
-          builder: (context, state, _) => SizedBox(
-            width: MediaQuery.sizeOf(context).width,
-            child: ElevatedButton(
-              onPressed: state == ButtonState.enabled
-                  ? () async {
-                      await widget.loginController.loginWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text,
-                      );
-                    }
-                  : null,
-              child: Text('Login'),
-            ),
-          ),
-        ),
       ),
     );
   }

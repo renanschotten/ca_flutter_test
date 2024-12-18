@@ -1,5 +1,6 @@
 import 'package:ca_flutter_test/core/utils/result.dart';
 import 'package:ca_flutter_test/features/auth/interactor/controller/login_controller.dart';
+import 'package:ca_flutter_test/features/auth/interactor/exceptions/auth_exception.dart';
 import 'package:ca_flutter_test/features/auth/interactor/services/i_auth_service.dart';
 import 'package:ca_flutter_test/features/auth/interactor/states/login_state.dart';
 import 'package:mocktail/mocktail.dart';
@@ -58,6 +59,33 @@ void main() {
           // Assert
           expect(controller.buttonState.value, ButtonState.enabled);
           expect(controller.loginState.value, FailureLoginState());
+        },
+      );
+
+      test(
+        "should assign NoConnectionLoginState to loginState and ButtonState.enabled to buttonState when authService response is Result.error(NetworkRequestFailureException())",
+        () async {
+          // Arrange
+          when(
+            () => authService.loginWithEmailAndPassword(
+              email: email,
+              password: password,
+            ),
+          ).thenAnswer((_) =>
+              Future.value(Result.error(NetworkRequestFailureException())));
+
+          // Act
+          await controller.loginWithEmailAndPassword(
+            email: email,
+            password: password,
+          );
+
+          // Assert
+          expect(controller.buttonState.value, ButtonState.enabled);
+          expect(
+            controller.loginState.value,
+            isInstanceOf<NoConnectionLoginState>(),
+          );
         },
       );
     },
