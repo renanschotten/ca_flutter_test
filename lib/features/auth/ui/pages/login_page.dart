@@ -1,3 +1,4 @@
+import 'package:ca_flutter_test/core/routing/routes.dart';
 import 'package:ca_flutter_test/features/auth/interactor/controller/login_controller.dart';
 import 'package:ca_flutter_test/features/auth/interactor/states/login_state.dart';
 import 'package:ca_flutter_test/features/auth/ui/widgets/failure_dialog_widget.dart';
@@ -38,6 +39,7 @@ class _LoginPageState extends State<LoginPage> {
         );
         break;
       case SuccessLoginState():
+        Modular.to.pushReplacementNamed(Routes.home);
         break;
       default:
     }
