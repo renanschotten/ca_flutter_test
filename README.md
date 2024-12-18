@@ -39,7 +39,7 @@ Na HomePage existem as seguintes ações:
 
 ### Splash
 
-<img src="./assets/app_images/splash.png" width="300" height="200">
+<img src="./assets/app_images/splash.png" style="width:50%; height:50%;">
 
 ### Login
 
