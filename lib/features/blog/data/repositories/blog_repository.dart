@@ -11,4 +11,9 @@ class BlogRepository implements IBlogRepository {
   Future<Result<List<PostEntity>>> getPosts() async {
     return await dataSource.getPosts();
   }
+
+  @override
+  Future<Result<PostEntity>> getPostById(int id) async {
+    return await dataSource.getPostById(id);
+  }
 }

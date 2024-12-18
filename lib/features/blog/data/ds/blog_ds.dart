@@ -36,4 +36,27 @@ class BlogDataSource implements IBlogDataSource {
       return Result.error(e);
     }
   }
+
+  @override
+  Future<Result<PostEntity>> getPostById(int id) async {
+    try {
+      final hasConnection =
+          await internetConnectionService.checkInternetConnection();
+      if (!hasConnection) return Result.error(NoConnectionException());
+      final response = await service.get(ApiRequest(
+        url: '$_baseUrl/posts/$id',
+      ));
+      if (response.code != 200) {
+        return Result.error(
+          response.code == 404
+              ? PostNotFoundException()
+              : GenericBlogException(),
+        );
+      }
+
+      return Result.ok(PostEntity.fromJson(response.body));
+    } on Exception catch (e) {
+      return Result.error(e);
+    }
+  }
 }

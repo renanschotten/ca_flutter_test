@@ -47,4 +47,40 @@ void main() {
       );
     },
   );
+
+  group(
+    'getPostById |',
+    () {
+      test(
+        "should return Result.ok(PostEntity) when the call to datasource is successful",
+        () async {
+          final post =
+              PostEntity(userId: 1, id: 1, title: 'title', body: 'body');
+          // Arrange
+          when(() => dataSource.getPostById(1)).thenAnswer(
+            (_) => Future.value(Result.ok(post)),
+          );
+          // Act
+          final response = await repository.getPostById(1);
+          // Assert
+          expect(response, Result<PostEntity>.ok(post));
+        },
+      );
+
+      test(
+        "should return Result.error(Exception) when the call to datasource is unsuccessful",
+        () async {
+          final e = Exception();
+          // Arrange
+          when(() => dataSource.getPostById(1)).thenAnswer(
+            (_) => Future.value(Result.error(e)),
+          );
+          // Act
+          final response = await repository.getPostById(1);
+          // Assert
+          expect(response, Result<PostEntity>.error(e));
+        },
+      );
+    },
+  );
 }

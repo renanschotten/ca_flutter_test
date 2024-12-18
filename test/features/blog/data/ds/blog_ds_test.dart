@@ -139,4 +139,127 @@ void main() {
       );
     },
   );
+  group(
+    "getPostById |",
+    () {
+      final request = ApiRequest(
+        url: "https://jsonplaceholder.typicode.com/posts/1",
+      );
+      final body = jsonEncode(
+        {
+          "userId": 1,
+          "id": 1,
+          "title":
+              "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+          "body":
+              "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+        },
+      );
+      final entity = PostEntity(
+        userId: 1,
+        id: 1,
+        title:
+            "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+        body:
+            "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+      );
+      final id = 1;
+
+      test(
+        "should return Result.error(NoConnectionException) when checkInternetConnection return false",
+        () async {
+          // Arrange
+          when(() => internetConnectionService.checkInternetConnection())
+              .thenAnswer((_) => Future.value(false));
+          when(() => service.get(request)).thenAnswer(
+            (_) => Future.value(ApiResponse(code: 200, body: body)),
+          );
+
+          // Act
+          final result = await ds.getPostById(id);
+          // Assert
+          expect(
+            result,
+            Result<PostEntity>.error(NoConnectionException()),
+          );
+        },
+      );
+      test(
+        "should return Result.ok(PostEntity) when status code is 200",
+        () async {
+          // Arrange
+          when(() => internetConnectionService.checkInternetConnection())
+              .thenAnswer((_) => Future.value(true));
+          when(() => service.get(request)).thenAnswer(
+            (_) => Future.value(ApiResponse(code: 200, body: body)),
+          );
+
+          // Act
+          final result = await ds.getPostById(id);
+          // Assert
+          expect(result, Result.ok(entity));
+        },
+      );
+
+      test(
+        "should return Result.error(BlogException()) when status code is different than 200 and 404",
+        () async {
+          // Arrange
+          when(() => internetConnectionService.checkInternetConnection())
+              .thenAnswer((_) => Future.value(true));
+          when(() => service.get(request)).thenAnswer(
+            (_) => Future.value(ApiResponse(code: 400, body: "")),
+          );
+
+          // Act
+          final result = await ds.getPostById(id);
+
+          // Assert
+          expect(
+            result,
+            Result<PostEntity>.error(GenericBlogException()),
+          );
+        },
+      );
+
+      test(
+        "should return Result.error(PostNotFoundException()) when status code is 404",
+        () async {
+          // Arrange
+          when(() => internetConnectionService.checkInternetConnection())
+              .thenAnswer((_) => Future.value(true));
+          when(() => service.get(request)).thenAnswer(
+            (_) => Future.value(ApiResponse(code: 404, body: "")),
+          );
+
+          // Act
+          final result = await ds.getPostById(id);
+
+          // Assert
+          expect(
+            result,
+            Result<PostEntity>.error(PostNotFoundException()),
+          );
+        },
+      );
+
+      test(
+        "should return Result.error(Exception()) when a Exception is thrown",
+        () async {
+          // Arrange
+          final e = Exception();
+          when(() => service.get(request)).thenThrow(e);
+
+          // Act
+          final result = await ds.getPostById(id);
+
+          // Assert
+          expect(
+            result,
+            Result<PostEntity>.error(e),
+          );
+        },
+      );
+    },
+  );
 }

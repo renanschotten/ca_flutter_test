@@ -3,4 +3,5 @@ import 'package:ca_flutter_test/features/blog/interactor/entities/post_entity.da
 
 abstract interface class IBlogRepository {
   Future<Result<List<PostEntity>>> getPosts();
+  Future<Result<PostEntity>> getPostById(int id);
 }

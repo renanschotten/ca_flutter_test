@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 
 class PostEntity extends Equatable {
@@ -14,6 +16,9 @@ class PostEntity extends Equatable {
     required this.body,
     this.favorite = false,
   });
+
+  factory PostEntity.fromJson(String source) =>
+      PostEntity.fromMap(jsonDecode(source));
 
   factory PostEntity.fromMap(Map<String, dynamic> map) {
     return PostEntity(
