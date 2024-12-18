@@ -24,5 +24,5 @@ class SuccessHomeState extends HomeState {
   SuccessHomeState({required this.posts});
 
   @override
-  List<Object?> get props => [runtimeType];
+  List<Object?> get props => [posts, runtimeType];
 }
